@@ -4,9 +4,36 @@ import ProductItem from "../product/ProductItem";
 class Landing extends Component {
     render() {
         return (
-            <div className="mt-3">
+            <div className="card-deck mt-2">
+                <div className="card-columns">
 
-                <ProductItem/>
+                    <ProductItem title="SSD m2 Evo920"
+                                 description=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, nemo?"
+                                 price="100"/>
+                    <ProductItem title="SSD m2 Evo920"
+                                 description=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, nemo?"
+                                 price="100"/>
+                    <ProductItem
+                        title="SSD m2 Evo920"
+                        description=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, nemo?"
+                        price="100"/>
+
+                    <ProductItem title="SSD m2 Evo920"
+                                 description=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, nemo?"
+                                 price="100"/><
+                    ProductItem title="SSD m2 Evo920"
+                                description=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, nemo?"
+                                price="100"/>
+                    <ProductItem title="SSD m2 Evo920"
+                                 description=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, nemo?"
+                                 price="100"/>
+                    <ProductItem title="SSD m2 Evo920"
+                                 description=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, nemo?"
+                                 price="100"/> <ProductItem title="SSD m2 Evo920"
+                                 description=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, nemo?"
+                                 price="100"/>
+                </div>
+
             </div>
         );
     }
