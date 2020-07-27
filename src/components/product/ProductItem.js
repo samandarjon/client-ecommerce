@@ -1,17 +1,19 @@
 import React from 'react';
 import "./product.css"
 import images from "./ssd.jpg"
+import {Link} from "react-router-dom";
+
 const productItem = ({title, description, img, price, id, addBasket, bayProduct}) => {
     return (
-        <div key=id className="card">
+        <div key={id} className="card">
             <img className="card-img-top" src={images} alt="Card image cap"/>
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">{description}</p>
-                <p className="card-text"><small className="text-muted">{price + " $"}</small></p>
-                <p className="card-text">
-                    <button className="btn btn-danger fs"><i className="fas fa-shopping-basket"/> Add to basket</button>
-                    <button className=" ml-2 btn btn-info"><i className="fas fa-eye"/> Preview</button>
+                <p className="card-text"><h4 className="text-muted">Price: {price + " $"}</h4></p>
+                <p className="card-text text-center">
+                    <button className="btn btn-danger fs" ><i className="fas fa-shopping-basket"/> Add to basket</button>
+                    <Link className=" ml-2 btn btn-info" to={"product/" + id}><i className="fas fa-eye"/> Preview</Link>
                 </p>
             </div>
         </div>

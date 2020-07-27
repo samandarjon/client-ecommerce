@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from "classnames";
 import PropTypes from "prop-types"
+import isEmpty from "../../validation/is-empty";
 
 const InputGroup = ({
                         name,

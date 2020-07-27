@@ -11,6 +11,10 @@ import Landing from "./components/layout/Landing";
 import setAuthToken from "./utils/setAuthToken";
 import store from "./store";
 import {logoutUser, setCurrentUser} from "./actions/authActions";
+import Product from "./components/product/Product";
+import Order from "./components/order/Order";
+import NotFound from "./components/Notfound/NotFound";
+
 
 function App() {
     // Check for token
@@ -41,6 +45,9 @@ function App() {
                     <div className="container">
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/login" component={Login}/>
+                        <Route exact path="/product/:id" component={Product}/>
+                        <Route exact path="/order/:id" component={Order}/>
+                        <Route exact component={NotFound}/>
                     </div>
                     <Footer/>
                 </div>

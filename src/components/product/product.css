@@ -1,5 +1,11 @@
 @media (min-width: 1025px ) {
     .card-columns {
-        column-count: 4;
+        column-count: 3;
     }
+}
+.btn-circle{
+    border-radius: 50%;
+}
+.img{
+    border: 1px solid #000;
 }
