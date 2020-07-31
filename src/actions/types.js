@@ -4,3 +4,8 @@ export const LOGIN_USER = "LOGIN_USER";
 export const REGISTER_USER = "REGISTER_USER";
 export const SET_CURRENT_USER = "SET_CURRENT_USER"
 export const GET_CATEGORIES = "GET_CATEGORIES"
+export const GET_PRODUCTS = "GET_PRODUCTS"
+export const GET_PRODUCT = "GET_PRODUCT"
+export const ADD_TO_BASKET = "ADD_TO_BASKET"
+export const GET_BASKET_ITEM = "GET_BASKET_ITEM"
+

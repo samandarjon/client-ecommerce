@@ -1,34 +1,53 @@
 import React, {Component} from 'react';
 import ProductItem from "../product/ProductItem";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {getProducts} from "../../actions/productAction";
+import isEmpty from "../../validation/is-empty";
+import {addToBasket} from "../../actions/basketAction";
 
 class Landing extends Component {
+
+    constructor() {
+        super();
+        // this.onClick = this.onClick.bind(this)
+    }
+
+    componentDidMount() {
+        this.props.getProducts()
+    }
+
+    onClick(id) {
+        let product = {
+            productId: id
+        }
+        this.props.addToBasket(product, this.props.history);
+    }
+
     render() {
+        const {products, loading} = this.props.products;
+        let productContent;
+        if (!loading) {
+            productContent = (<h1>Loading</h1>)
+        } else {
+            productContent = products.content.map(product =>
+                <ProductItem
+                    title={product.title} description={product.description}
+                    price={product.price} id={product.id}
+                    img={!isEmpty(product.attachments.length > 0) ? product.attachments[0].id : ""
+                    }
+                    addBasket={this.onClick.bind(this,product.id)}
+
+                />
+            )
+        }
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
                         <div className="card-deck mt-2">
                             <div className="card-columns">
-
-                                <ProductItem title="SSD m2 Evo920"
-                                             description=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, nemo?"
-                                             price="100" id="1"/>
-                                <ProductItem title="SSD m2 Evo920"
-                                             description=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, nemo?"
-                                             price="100"/>
-                                <ProductItem title="SSD m2 Evo920"
-                                             description=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, nemo?"
-                                             price="100" id="1"/>
-                                <ProductItem title="SSD m2 Evo920"
-                                             description=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, nemo?"
-                                             price="100"/>
-                                <ProductItem title="SSD m2 Evo920"
-                                             description=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, nemo?"
-                                             price="100"/>
-                                <ProductItem
-                                    title="SSD m2 Evo920"
-                                    description=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, nemo?"
-                                    price="100"/>
+                                {productContent}
                             </div>
                         </div>
                     </div>
@@ -38,4 +57,18 @@ class Landing extends Component {
     }
 }
 
-export default Landing;
+Landing.protoType = {
+    addToBasket: PropTypes.func,
+    getProducts: PropTypes.func.isRequired,
+    products: PropTypes.object.isRequired,
+    errors: PropTypes.object,
+    basket: PropTypes.object
+
+}
+const mapStateToProps = state => ({
+    products: state.products,
+    errors: state.errors,
+    baskets: state.baskets
+})
+
+export default connect(mapStateToProps, {getProducts, addToBasket})(Landing);

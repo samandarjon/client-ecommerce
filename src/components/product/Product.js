@@ -2,12 +2,22 @@ import React, {Component} from 'react';
 import images from "./ssd.jpg"
 import TextAreaFieldGroup from "../comman/TextAreaInputGroup";
 import {Link} from "react-router-dom";
+import {getProduct} from "../../actions/productAction";
+import {connect} from "react-redux";
+import PropTypes from "prop-types"
 
 class Product extends Component {
+    componentDidMount() {
+        if (this.props.match.params.id) {
+            this.props.getProduct(this.props.match.params.id, this.props.history);
+        }
+    }
+
     state = {
         "amount": 0,
         "message": ""
     }
+
 
     onChange(e) {
         console.log(e.target.value)
@@ -87,4 +97,19 @@ class Product extends Component {
     }
 }
 
-export default Product;
+Product.protoType = {
+    getProduct: PropTypes.func.isRequired,
+    product: PropTypes.object.isRequired
+
+}
+
+const mapStateToProps = state => ({
+    product: state.product
+})
+
+export default connect(
+    mapStateToProps,
+    {
+        getProduct
+    }
+)(Product);

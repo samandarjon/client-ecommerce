@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
 import {logoutUser} from "../../actions/authActions";
 import axios from "axios"
+import {deleteBasketItem, getBasketItem} from "../../actions/basketAction";
+import {connect} from "react-redux";
+import isEmpty from "../../validation/is-empty";
 
 class Navbar extends Component {
     onLogoutClick(e) {
@@ -18,15 +20,57 @@ class Navbar extends Component {
         }
         axios.get("/api/categories")
             .then(res => {
-                console.log(res.data._embedded.categories)
                 this.setState({categories: res.data._embedded.categories})
             }).catch(error => console.log(error.response))
     }
 
+    componentDidMount() {
+        this.props.getBasketItem()
+    }
+
+    onClickDeleteBasketItem(id) {
+        this.props.deleteBasketItem(id);
+        console.log(id)
+    }
+
     render() {
         const {isAuthenticated, user} = this.props.auth;
+        const {items} = this.props.baskets;
+        let list;
+        if (isEmpty(items)) {
+            list = []
+        } else {
+            list = items;
+        }
         const authLink = (
             <ul className="navbar-nav ml-auto">
+                <li className="nav-item dropdown mx-5">
+                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i className="fas fa-shopping-basket"/> <span>{isEmpty(list) ? 0 : list.length}</span>
+                    </a>
+                    <div className="dropdown-menu mr-5" aria-labelledby="navbarDropdown">
+                        <div className="list-group w-10"> {list.map(item =>
+                            (<div className="basket">
+                                    <Link to={"/product/" + item.product.id}
+                                          className="list-group-item list-group-item-action basket-item">
+                                        <div className="d-flex w-100 justify-content-between">
+                                            <p className="mb-1">{item.product.title}</p>
+                                        </div>
+                                        <small className="mb-1 ">{item.product.description}</small>
+
+                                    </Link>
+                                    <button className="btn btn-danger basket-times"
+                                            onClick={this.onClickDeleteBasketItem.bind(this, item.id)}>
+                                        <i className="fas fa-times"
+                                        /></button>
+                                </div>
+                            )
+                        )}
+                        </div>
+                    </div>
+
+                </li>
                 <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -95,16 +139,7 @@ class Navbar extends Component {
 
                     </ul>
 
-                    {/*<form className="form-group my-2 my-lg-0">*/}
-                    {/*    <div className="input-group mb-3">*/}
-                    {/*        <input className="form-control " type="search" placeholder="Search"*/}
-                    {/*               aria-label="Search"/>*/}
-                    {/*        <div className="input-group-append">*/}
-                    {/*            <button className="btn btn-outline-success input-group-appen" type="submit">Search*/}
-                    {/*            </button>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</form>*/}
+
                     {isAuthenticated ? authLink : guestLink}
                 </div>
             </nav>
@@ -115,12 +150,19 @@ class Navbar extends Component {
 Navbar.propTypes = {
     auth: PropTypes.object.isRequired,
     logoutUser: PropTypes.func.isRequired,
+    getBasketItem: PropTypes.func.isRequired,
+    baskets: PropTypes.object.isRequired
 };
 
 const mapStatetoProps = state => ({
-    auth: state.auth
+    auth: state.auth,
+    baskets: state.baskets
 });
 export default connect(
     mapStatetoProps,
-    {logoutUser}
+    {
+        logoutUser,
+        getBasketItem,
+        deleteBasketItem
+    }
 )(Navbar);

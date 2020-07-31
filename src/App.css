@@ -12,7 +12,8 @@
     padding: 4px 28px;
     margin-left: 17px;
 }
-.show{
+
+.show {
     margin-right: 30px;
 }
 
@@ -45,6 +46,28 @@
         transform: rotate(360deg);
     }
 }
-.feedback-group{
+
+.feedback-group {
     display: flex;
+}
+
+.basket {
+position: relative;
+
+}
+
+
+.basket-times {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    background-color: transparent;
+    color: red;
+    border: none;
+}
+.basket-times:hover {
+    background-color: transparent;
+    border: none;
+    color: red;
 }

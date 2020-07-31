@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Footer from "./components/layout/Footer";
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Navbar from "./components/layout/Navbar";
 import {Provider} from "react-redux";
@@ -14,6 +14,8 @@ import {logoutUser, setCurrentUser} from "./actions/authActions";
 import Product from "./components/product/Product";
 import Order from "./components/order/Order";
 import NotFound from "./components/Notfound/NotFound";
+import Dashboard from "./components/dashboard/Dashboard";
+import PrivateRoute from "./components/comman/PrivaterRoute";
 
 
 function App() {
@@ -46,8 +48,12 @@ function App() {
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/product/:id" component={Product}/>
-                        <Route exact path="/order/:id" component={Order}/>
-                        <Route exact component={NotFound}/>
+                        <Switch>
+                            <PrivateRoute exact path="/dashboard" component={Dashboard}/>
+                        </Switch>
+                        <Switch>
+                            <PrivateRoute exact path="/order/:id" component={Order}/>
+                        </Switch>
                     </div>
                     <Footer/>
                 </div>
