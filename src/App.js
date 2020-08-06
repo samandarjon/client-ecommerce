@@ -13,7 +13,6 @@ import store from "./store";
 import {logoutUser, setCurrentUser} from "./actions/authActions";
 import Product from "./components/product/Product";
 import Order from "./components/order/Order";
-import NotFound from "./components/Notfound/NotFound";
 import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/comman/PrivaterRoute";
 
@@ -48,13 +47,14 @@ function App() {
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/product/:id" component={Product}/>
-                        <Switch>
-                            <PrivateRoute exact path="/dashboard" component={Dashboard}/>
-                        </Switch>
+
                         <Switch>
                             <PrivateRoute exact path="/order/:id" component={Order}/>
                         </Switch>
                     </div>
+                    <Switch>
+                        <PrivateRoute exact path="/dashboard" component={Dashboard}/>
+                    </Switch>
                     <Footer/>
                 </div>
             </Router>

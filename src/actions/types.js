@@ -8,4 +8,7 @@ export const GET_PRODUCTS = "GET_PRODUCTS"
 export const GET_PRODUCT = "GET_PRODUCT"
 export const ADD_TO_BASKET = "ADD_TO_BASKET"
 export const GET_BASKET_ITEM = "GET_BASKET_ITEM"
+export const GET_FEEDBACKS = "GET_FEEDBACKS"
+export const GET_ADDRESSES = "GET_ADDRESSES"
+export const GET_ORDERS = "GET_ORDERS"
 

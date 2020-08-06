@@ -6,7 +6,6 @@ import axios from "axios"
 import {deleteBasketItem, getBasketItem} from "../../actions/basketAction";
 import {connect} from "react-redux";
 import isEmpty from "../../validation/is-empty";
-
 class Navbar extends Component {
     onLogoutClick(e) {
         e.preventDefault();
@@ -77,9 +76,8 @@ class Navbar extends Component {
                         Account
                     </a>
                     <div className="dropdown-menu mr-5" aria-labelledby="navbarDropdown">
-                        <a className="dropdown-item" href="#">Dashboard</a>
-                        <a className="dropdown-item" href="#">My orders</a>
-                        <a className="dropdown-item" href="#">Setting</a>
+                        <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
+                        <Link className="dropdown-item" to="/setting">Setting</Link>
                         <button
                             onClick={this.onLogoutClick.bind(this)}
                             className="nav-link logout"
@@ -106,8 +104,8 @@ class Navbar extends Component {
             </ul>
         );
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand">Ecommerce</a>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                <Link className="navbar-brand" to={"/"}>Ecommerce</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -116,11 +114,6 @@ class Navbar extends Component {
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <Link to="/" className="nav-link" href="#">Home <span
-                                className="sr-only">(current)</span></Link>
-                        </li>
-
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -132,9 +125,6 @@ class Navbar extends Component {
                                                            to={"/product/" + category.id}>{category.name}</Link>)
                                 }
                             </div>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Contact</a>
                         </li>
 
                     </ul>

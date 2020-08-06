@@ -1,0 +1,12 @@
+.pro-sidebar {
+    background: #343a40;
+}
+
+.sidebar-button {
+    color: white;
+    background-color: transparent;
+    border: none transparent;
+}
+.sidebar-button:focus {
+   outline: none;
+}
