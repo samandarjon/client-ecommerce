@@ -15,6 +15,8 @@ import Product from "./components/product/Product";
 import Order from "./components/order/Order";
 import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/comman/PrivaterRoute";
+import ManageProducts from "./components/manage/product/ManageProducts";
+import AddProduct from "./components/manage/product/AddProduct";
 
 
 function App() {
@@ -54,6 +56,12 @@ function App() {
                     </div>
                     <Switch>
                         <PrivateRoute exact path="/dashboard" component={Dashboard}/>
+                    </Switch>
+                    <Switch>
+                        <PrivateRoute exact path="/products" component={ManageProducts}/>
+                    </Switch>
+                    <Switch>
+                        <PrivateRoute exact path="/add-product" component={AddProduct}/>
                     </Switch>
                     <Footer/>
                 </div>

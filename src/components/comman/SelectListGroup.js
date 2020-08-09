@@ -4,8 +4,11 @@ import PropTypes from "prop-types";
 
 const SelectListGroup = ({name, value, error, info, onChange, options}) => {
     const selectOptions = options.map(option => (
-        <option key={option.id} value={option.id}>
-            {option.province + " vil, " + option.city + " shahar(tuman), " + option.home}
+        <option key={option.idx} value={option.id}>
+            {(option.province) ? (
+                option.province + " vil, " + option.city + " shahar(tuman), " + option.home) : option.name
+            }
+
         </option>
     ));
     return (

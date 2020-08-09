@@ -10,7 +10,6 @@ const TextAreaFieldGroup = ({
                                 info,
                                 onChange,
                             }) => {
-    console.log(value)
     return (
         <div className="form-group">
 

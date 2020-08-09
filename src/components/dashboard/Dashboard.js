@@ -3,7 +3,7 @@ import {Menu, MenuItem, ProSidebar, SidebarHeader} from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import './custom.css'
 import {connect} from "react-redux";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {getOwnOrders} from "../../actions/orderAction";
 
 class Dashboard extends Component {
@@ -63,10 +63,19 @@ class Dashboard extends Component {
                     </SidebarHeader>
                     <Menu iconShape="square">
                         <MenuItem>
-                            <button onClick={event => this.productClick()}>product</button>
+                            <Link className={"list"} to={"/chat"}><i className="fas fa-comments"/> Chat</Link>
                         </MenuItem>
                         <MenuItem>
-                            <button onClick={event => this.onOrderClick()}>Order</button>
+                            <Link className={"list"} to="/add-product"><i className="fas fa-plus"/> Add Product</Link>
+                        </MenuItem>
+                        <MenuItem>
+                            <spam className={"list"} onClick={() => this.productClick()}><i
+                                className="fas fa-clipboard-list"/> Products
+                            </spam>
+                        </MenuItem>
+                        <MenuItem>
+                            <span className={"list"} onClick={() => this.onOrderClick()}><i
+                                className="fas fa-shopping-cart"/> Orders</span>
                         </MenuItem>
                     </Menu>
                 </ProSidebar>

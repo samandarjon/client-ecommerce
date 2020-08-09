@@ -3,10 +3,17 @@
 }
 
 .sidebar-button {
-    color: white;
+    color: #adadad;
     background-color: transparent;
     border: none transparent;
 }
 .sidebar-button:focus {
    outline: none;
+}
+
+.sidebar-button:hover {
+    color: #d8d8d8;
+}
+.pro-item-content{
+    font-size: 18px;
 }

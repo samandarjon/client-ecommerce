@@ -6,6 +6,7 @@ import axios from "axios"
 import {deleteBasketItem, getBasketItem} from "../../actions/basketAction";
 import {connect} from "react-redux";
 import isEmpty from "../../validation/is-empty";
+
 class Navbar extends Component {
     onLogoutClick(e) {
         e.preventDefault();
@@ -24,7 +25,9 @@ class Navbar extends Component {
     }
 
     componentDidMount() {
-        this.props.getBasketItem()
+        const {isAuthenticated} = this.props.auth;
+        if (isAuthenticated)
+            this.props.getBasketItem()
     }
 
     onClickDeleteBasketItem(id) {
@@ -43,17 +46,17 @@ class Navbar extends Component {
         }
         const authLink = (
             <ul className="navbar-nav ml-auto">
-                <li className="nav-item dropdown mx-5">
+                <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i className="fas fa-shopping-basket"/> <span>{isEmpty(list) ? 0 : list.length}</span>
                     </a>
-                    <div className="dropdown-menu mr-5" aria-labelledby="navbarDropdown">
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                         <div className="list-group w-10"> {list.map(item =>
                             (<div className="basket">
                                     <Link to={"/product/" + item.product.id}
                                           className="list-group-item list-group-item-action basket-item">
-                                        <div className="d-flex w-100 justify-content-between">
+                                        <div className="d-flexjustify-content-between">
                                             <p className="mb-1">{item.product.title}</p>
                                         </div>
                                         <small className="mb-1 ">{item.product.description}</small>
@@ -76,12 +79,18 @@ class Navbar extends Component {
                         Account
                     </a>
                     <div className="dropdown-menu mr-5" aria-labelledby="navbarDropdown">
-                        <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
-                        <Link className="dropdown-item" to="/setting">Setting</Link>
+                        <Link className="dropdown-item list" to="/dashboard"><i className="fas fa-tachometer-alt"/>Dashboard</Link>
+                        <Link className="dropdown-item list" to={"/chat"}><i className="fas fa-comments"/> Chat</Link>
+                        <Link className="dropdown-item list" to={"/products"}><i
+                            className="fas fa-clipboard-list"/> Products</Link>
+                        <Link className="dropdown-item list" to={"/orders"}><i
+                            className="fas fa-shopping-cart"/> Orders</Link>
+                        <Link className="dropdown-item list" to="/setting"><i className="fas fa-cog"/> Setting</Link>
                         <button
                             onClick={this.onLogoutClick.bind(this)}
-                            className="nav-link logout"
+                            className="nav-link logout list"
                         >
+                            <i className="fas fa-sign-out-alt"/>
                             Log out
                         </button>
                     </div>
