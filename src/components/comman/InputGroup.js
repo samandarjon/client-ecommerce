@@ -1,7 +1,6 @@
 import React from 'react';
 import classnames from "classnames";
 import PropTypes from "prop-types"
-import isEmpty from "../../validation/is-empty";
 
 const InputGroup = ({
                         name,
@@ -9,20 +8,39 @@ const InputGroup = ({
                         value,
                         error,
                         type,
-                        onChange
+                        info,
+                        onChange,
+                        addInput,
+                        removeInput
                     }) => {
     return (
-        <div className="input-group mb-3">
+        <div className="input-group my-2" onChange={onChange}>
 
+            <div className="input-group-prepend">
+                <button className="btn btn-danger" onClick={removeInput} type="button">-</button>
+
+            </div>
             <input
                 className={classnames("form-control form-control-lg", {
                     "is-invalid": error
                 })}
                 placeholder={placeholder}
-                name={name}
-                value={value}
-                onChange={onChange}
+                name={name[0]}
+                value={value.name ? value.name : ""}
+
             />
+            <input
+                className={classnames("form-control form-control-lg", {
+                    "is-invalid": error
+                })}
+                placeholder={placeholder}
+                name={name[1]}
+                value={value.value ? value.value : ""}
+            />
+            <div className="input-group-append">
+                <button className="btn btn-info" onClick={addInput} type="button">+</button>
+            </div>
+            {info && <small className="form-text text-muted">{info}</small>}
             {error && <div className="invalid-feedback">{error}</div>}
         </div>
     )
