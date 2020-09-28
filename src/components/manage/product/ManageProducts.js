@@ -18,6 +18,11 @@ class ManageProducts extends Component {
         this.props.getOwnProducts(user.sub);
     }
 
+    onDeleteProduct(id) {
+        const {user} = this.props.auth;
+        this.props.deleteOwnProduct(id,user.sub );
+    }
+
 
     render() {
         const {products} = this.props.products;
@@ -36,7 +41,7 @@ class ManageProducts extends Component {
                         </button>
                     </td>
                     <td>
-                        <button className={"btn btn-info btn-block"}> Update</button>
+                        <Link to={`/update-product/${product.id}`} className={"btn btn-info btn-block"}> Update</Link>
                     </td>
                 </tr>
             )
@@ -68,9 +73,6 @@ class ManageProducts extends Component {
         );
     }
 
-    onDeleteProduct(id) {
-        this.props.deleteOwnProduct(id);
-    }
 }
 
 ManageProducts.propTypes = {

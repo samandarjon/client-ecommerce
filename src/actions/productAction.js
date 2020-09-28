@@ -1,5 +1,6 @@
 import axios from "axios"
 import {GET_ERRORS, GET_PRODUCT, GET_PRODUCTS} from "./types";
+import isEmpty from "../validation/is-empty";
 
 export const getProducts = () => dispatch => {
     axios.get("/api/products")
@@ -19,13 +20,14 @@ export const getProducts = () => dispatch => {
 }
 export const getProduct = (id, history) => dispatch => {
     axios.get(`/api/products/${id}`)
-        .then(res =>
-            dispatch({
-                type: GET_PRODUCT,
-                payload: res.data
-            })
+        .then(res => {
+                dispatch({
+                    type: GET_PRODUCT,
+                    payload: res.data
+                })
+            }
         )
-        .catch(err =>
+        .catch(() =>
             history.push("/not-found")
         )
 
@@ -36,7 +38,7 @@ export const getOwnProducts = (userId) => dispatch => {
             type: GET_PRODUCTS,
             payload: res.data
         }))
-        .catch(err =>
+        .catch(() =>
             dispatch({
                 type: GET_PRODUCTS,
                 payload: {}
@@ -75,8 +77,58 @@ export const addProduct = (categoryId, product, attach, history) => dispatch => 
         )
 
 }
+
+export const updateProduct = (id, product, attach, history) => dispatch => {
+    if (isEmpty(attach.id)) {
+        const file = new FormData();
+        file.append('file', attach)
+        axios.post("/api/attach/upload", file)  
+            .then(res => {
+                const fileId = res.data;
+                product.files = (fileId);
+                axios.put(`/api/products/${id}`, product)
+                    .then((res) => {
+                        history.push("/products")
+                        console.log(res.data)
+                    })
+                    .catch(err => {
+                            dispatch({
+                                type: GET_ERRORS,
+                                payload: err.response.data
+                            })
+                            console.log(err.response.data)
+                        }
+                    )
+            })
+            .catch(err => {
+                    dispatch({
+                        type: GET_ERRORS,
+                        payload: err.response.data
+                    })
+                    console.log(err.response.data)  
+                }
+            )
+    } else {
+        product.files = [attach.id]
+        console.log(product)
+        axios.put(`/api/products/${id}`, product)
+            .then(() => {
+                history.push("/products")
+            })
+            .catch(err => {
+                    dispatch({
+                        type: GET_ERRORS,
+                        payload: err.response.data
+                    })
+                    console.log(err.response.data)
+                }
+            )
+    }
+
+
+}
 export const deleteOwnProduct = (productId, userId) => dispatch => {
-    axios.delete(`/api/product/${productId}`)
+    axios.delete(`/api/products/${productId}`)
         .then(() => dispatch(getOwnProducts(userId)))
         .catch(() => dispatch(getOwnProducts(userId)))
 }

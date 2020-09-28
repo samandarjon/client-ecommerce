@@ -1,12 +1,14 @@
 import React from "react";
 import classnames from "classnames";
-import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+import PropTypes from "prop-types"
 
-const SelectListGroup = ({name, value, error, info, onChange, options}) => {
+
+const SelectListGroup = ({name, value, error, info, onChange, options, disable}) => {
     const selectOptions = options.map(option => (
-        <option key={option.idx} value={option.id}>
+        <option disabled={disable} key={option.id} value={option.id ? option.id : option}>
             {(option.province) ? (
-                option.province + " vil, " + option.city + " shahar(tuman), " + option.home) : option.name
+                option.province + " vil, " + option.city + " shahar(tuman), " + option.home) : option.name ? option.name : option
             }
 
         </option>
@@ -23,7 +25,9 @@ const SelectListGroup = ({name, value, error, info, onChange, options}) => {
             >
                 {selectOptions}
             </select>
-            {info && <small className="form-text text-muted">{info}</small>}
+            {info && <small
+                className="form-text text-muted">{info} {info.toString().includes("Kerakli manzilni") ?
+                < Link to={"/address"}>Yaratish</Link> : ""}</small>}
             {error && <div className="invalid-feedback">{error}</div>}
         </div>
     );
@@ -35,6 +39,9 @@ SelectListGroup.propTypes = {
     info: PropTypes.string,
     error: PropTypes.string,
     onChange: PropTypes.func.isRequired
+};
+SelectListGroup.defaultProps = {
+    type: false
 };
 
 export default SelectListGroup;

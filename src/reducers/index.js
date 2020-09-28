@@ -5,6 +5,7 @@ import productReducer from "./productReducer";
 import basketReducer from "./basketReducer";
 import feedbackReducer from "./feedbackReducer";
 import addressReducer from "./addressReducer";
+import orderReducer from "./orderReducer";
 
 export default combineReducers({
     auth: authReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
     errors: errorReducer,
     baskets: basketReducer,
     feedback: feedbackReducer,
-    addresses: addressReducer
+    addresses: addressReducer,
+    orders: orderReducer
 });

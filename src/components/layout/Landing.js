@@ -48,7 +48,7 @@ class Landing extends Component {
                         <div className="card-deck mt-2">
                             <div className="card-columns">
                                 {productContent}
-                            </div>
+                               </div>
                         </div>
                     </div>
                 </div>

@@ -14,3 +14,10 @@ export const getAddress = () => dispatch => {
             })
         })
 }
+export const addAddress = (address, history) => () => {
+    axios.post("/api/addresses", address)
+        .then(() => history.pop())
+        .catch(err => {
+            console.log(err)
+        })
+}

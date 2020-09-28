@@ -17,6 +17,9 @@ import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/comman/PrivaterRoute";
 import ManageProducts from "./components/manage/product/ManageProducts";
 import AddProduct from "./components/manage/product/AddProduct";
+import UpdateProduct from "./components/manage/product/UpdateProduct";
+import ManageOrders from "./components/manage/order/ManageOrders";
+import Address from "./components/address/Address";
 
 
 function App() {
@@ -40,7 +43,8 @@ function App() {
             window.location.href = "/login";
         }
     }
-    return (<Provider store={store}>
+    return (
+        <Provider store={store}>
             <Router>
                 <div className="App">
                     <Navbar/>
@@ -49,20 +53,29 @@ function App() {
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/product/:id" component={Product}/>
-
                         <Switch>
                             <PrivateRoute exact path="/order/:id" component={Order}/>
                         </Switch>
+                        <Switch>
+                            <PrivateRoute exact path="/dashboard" component={Dashboard}/>
+                        </Switch>
+                        <Switch>
+                            <PrivateRoute exact path="/products" component={ManageProducts}/>
+                        </Switch>
+                        <Switch>
+                            <PrivateRoute exact path="/add-product" component={AddProduct}/>
+                        </Switch>
+                        <Switch>
+                            <PrivateRoute exact path="/update-product/:id" component={UpdateProduct}/>
+                        </Switch>
+                        <Switch>
+                            <PrivateRoute exact path="/orders" component={ManageOrders}/>
+                        </Switch>
+                        <Switch>
+                            <PrivateRoute exact path="/address" component={Address}/>
+                        </Switch>
                     </div>
-                    <Switch>
-                        <PrivateRoute exact path="/dashboard" component={Dashboard}/>
-                    </Switch>
-                    <Switch>
-                        <PrivateRoute exact path="/products" component={ManageProducts}/>
-                    </Switch>
-                    <Switch>
-                        <PrivateRoute exact path="/add-product" component={AddProduct}/>
-                    </Switch>
+
                     <Footer/>
                 </div>
             </Router>

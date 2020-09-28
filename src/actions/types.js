@@ -11,4 +11,7 @@ export const GET_BASKET_ITEM = "GET_BASKET_ITEM"
 export const GET_FEEDBACKS = "GET_FEEDBACKS"
 export const GET_ADDRESSES = "GET_ADDRESSES"
 export const GET_ORDERS = "GET_ORDERS"
+export const GET_OWN_ORDERS = "GET_OWN_ORDERS"
+export const GET_SELLER_ORDERS = "GET_SELLER_ORDERS"
+
 

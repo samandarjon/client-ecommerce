@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {getAddress} from "../../actions/addressAction";
 import SelectListGroup from "../comman/SelectListGroup";
 import isEmpty from "../../validation/is-empty";
 import {connect} from "react-redux";
 import {addOrder} from "../../actions/orderAction";
 import {withRouter} from "react-router-dom";
 import PropTypes from "prop-types"
+import {getAddress} from "../../actions/addressAction";
 
 class Order extends Component {
     constructor(props) {
@@ -81,7 +81,7 @@ class Order extends Component {
                             value={this.state.address}
                             onChange={this.onChange}
                             options={addresses}
-                            info={"Kerakli manzilni tanlang, agar mavjud bo`lsa yangi yaratishingi kerak."}
+                            info={"Kerakli manzilni tanlang, agar mavjud bolsa yangi yaratishingi kerak."}
                             error={this.state.error}
                         />
 
