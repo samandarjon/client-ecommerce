@@ -13,7 +13,6 @@ import store from "./store";
 import {logoutUser, setCurrentUser} from "./actions/authActions";
 import Product from "./components/product/Product";
 import Order from "./components/order/Order";
-import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/comman/PrivaterRoute";
 import ManageProducts from "./components/manage/product/ManageProducts";
 import AddProduct from "./components/manage/product/AddProduct";
@@ -56,9 +55,7 @@ function App() {
                         <Switch>
                             <PrivateRoute exact path="/order/:id" component={Order}/>
                         </Switch>
-                        <Switch>
-                            <PrivateRoute exact path="/dashboard" component={Dashboard}/>
-                        </Switch>
+
                         <Switch>
                             <PrivateRoute exact path="/products" component={ManageProducts}/>
                         </Switch>
@@ -72,7 +69,7 @@ function App() {
                             <PrivateRoute exact path="/orders" component={ManageOrders}/>
                         </Switch>
                         <Switch>
-                            <PrivateRoute exact path="/address" component={Address}/>
+                            <PrivateRoute exact path="/addresses" component={Address}/>
                         </Switch>
                     </div>
 

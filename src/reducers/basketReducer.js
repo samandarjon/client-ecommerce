@@ -1,4 +1,4 @@
-import {ADD_TO_BASKET, GET_BASKET_ERRORS, GET_BASKET_ITEM} from "../actions/types";
+import {ADD_TO_BASKET, GET_BASKET_ITEM} from "../actions/types";
 
 const initialState = {
     message: {},

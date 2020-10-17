@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import TextFieldGroup from "../comman/TextFieldGroup";
 import withRouter from "react-router-dom/es/withRouter";
 import {connect} from "react-redux";
-import {addAddress, getAddress} from "../../actions/addressAction";
+import {addAddress, deleteAddress, getAddress, updateAddress} from "../../actions/addressAction";
 import propTypes from "prop-types"
 import isEmpty from "../../validation/is-empty";
 
@@ -10,12 +10,13 @@ class Address extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: "",
             province: "",
             city: "",
             home: "",
             zipCode: "",
             addresses: [],
-            address: {}
+            update: false
         }
     }
 
@@ -30,15 +31,39 @@ class Address extends Component {
     onSubmit(e) {
         e.preventDefault();
         let address = {...this.state}
-        address.zipCode = parseInt(address.zipCode);
-        console.log(address)
-        this.props.addAddress(address, this.props.history)
+        if (!this.state.update)
+            this.props.addAddress(address, this.props.history)
+        else
+            this.props.updateAddress(address);
+        this.setState({
+            id: "",
+            province: "",
+            city: "",
+            home: "",
+            zipCode: "",
+            update: false
+        })
+    }
+
+    onDelete(id) {
+        this.props.deleteAddress(id);
+    }
+
+    onUpdate(address) {
+        this.setState({
+            id: address.id,
+            province: address.province,
+            city: address.city,
+            home: address.home,
+            zipCode: address.zipCode,
+            update: true
+        })
+
     }
 
     render() {
         let addressTable = null;
         let {addresses} = this.props.addresses;
-        console.log(this.props)
         if (addresses.length > 0) {
             addressTable = addresses.map((address, i) => (<tr>
                 <th scope="row">{i + 1}</th>
@@ -47,10 +72,10 @@ class Address extends Component {
                 <td>{address.home}</td>
                 <td>{address.zipCode}</td>
                 <td>
-                    <button className={"btn btn-danger"}>Delete</button>
+                    <button onClick={event => this.onDelete(address.id)} className={"btn btn-danger"}>Delete</button>
                 </td>
                 <td>
-                    <button className={"btn btn-info"}>Update</button>
+                    <button onClick={event => this.onUpdate(address)} className={"btn btn-info"}>Update</button>
                 </td>
             </tr>))
         }
@@ -58,7 +83,7 @@ class Address extends Component {
         return (
             <div>
                 <h1 className="my-4 text-center">
-                    {isEmpty(this.state.address) ?
+                    {!this.state.update ?
                         "Add" : "Update"} Address</h1>
                 <div className="row my-3">
                     <div className="col-md">
@@ -75,7 +100,7 @@ class Address extends Component {
                             <TextFieldGroup onChange={(e) => this.onChange(e)} placeholder={"Zip code"}
                                             value={this.state.zipCode}
                                             name={"zipCode"}/>
-                            <button className={"btn btn-info btn-block"}>{isEmpty(this.state.address) ?
+                            <button className={"btn btn-info btn-block"}>{(!this.state.update) ?
                                 "Add" : "Update"} Address
                             </button>
                         </form>
@@ -106,6 +131,8 @@ class Address extends Component {
 Address.propTypes = {
     addAddress: propTypes.func.isRequired,
     getAddress: propTypes.func.isRequired,
+    deleteAddress: propTypes.func.isRequired,
+    updateAddress: propTypes.func.isRequired,
     addresses: propTypes.object.isRequired
 }
 const mapStateToProps = state => ({
@@ -113,4 +140,7 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, {addAddress, getAddress})(withRouter(Address));
+export default connect(mapStateToProps, {
+    addAddress, getAddress, deleteAddress,
+    updateAddress
+})(withRouter(Address));

@@ -1,4 +1,4 @@
-import {CLEAR_ERRORS, GET_BASKET_ERRORS, GET_ERRORS, GET_FEEDBACKS} from "../actions/types";
+import {GET_FEEDBACKS} from "../actions/types";
 
 const initialState = {};
 export default function (state = initialState, action) {

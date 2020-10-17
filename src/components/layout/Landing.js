@@ -7,12 +7,6 @@ import isEmpty from "../../validation/is-empty";
 import {addToBasket} from "../../actions/basketAction";
 
 class Landing extends Component {
-
-    constructor() {
-        super();
-        // this.onClick = this.onClick.bind(this)
-    }
-
     componentDidMount() {
         this.props.getProducts()
     }
@@ -36,7 +30,7 @@ class Landing extends Component {
                     price={product.price} id={product.id}
                     img={!isEmpty(product.attachments.length > 0) ? product.attachments[0].id : ""
                     }
-                    addBasket={this.onClick.bind(this,product.id)}
+                    addBasket={this.onClick.bind(this, product.id)}
 
                 />
             )
@@ -48,7 +42,7 @@ class Landing extends Component {
                         <div className="card-deck mt-2">
                             <div className="card-columns">
                                 {productContent}
-                               </div>
+                            </div>
                         </div>
                     </div>
                 </div>

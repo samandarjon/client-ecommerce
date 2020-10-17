@@ -79,13 +79,12 @@ class Navbar extends Component {
                         Account
                     </a>
                     <div className="dropdown-menu mr-5" aria-labelledby="navbarDropdown">
-                        <Link className="dropdown-item list" to="/dashboard"><i className="fas fa-tachometer-alt"/>Dashboard</Link>
+                        <Link className="dropdown-item list" to="/addresses"><i className="fas fa-map-marker-alt"/>Address</Link>
                         <Link className="dropdown-item list" to={"/chat"}><i className="fas fa-comments"/> Chat</Link>
                         <Link className="dropdown-item list" to={"/products"}><i
                             className="fas fa-clipboard-list"/> Products</Link>
                         <Link className="dropdown-item list" to={"/orders"}><i
                             className="fas fa-shopping-cart"/> Orders</Link>
-                        <Link className="dropdown-item list" to="/setting"><i className="fas fa-cog"/> Setting</Link>
                         <button
                             onClick={this.onLogoutClick.bind(this)}
                             className="nav-link logout list"
