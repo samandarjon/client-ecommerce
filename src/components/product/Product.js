@@ -77,7 +77,7 @@ class Product extends Component {
                 <div>
                     <div className="row my-4">
                         <div className="col-md col-sm-12">
-                            <img src={"https://stormy-springs-39153.herokuapp.com/" + product.attachments[0].id}
+                            <img src={"https://stormy-springs-39153.herokuapp.com/api/attach/preview/" + product.attachments[0].id}
                                  alt="this is a product images" className="img-fluid"/>
                         </div>
                         <div className="col-md col-sm-12">
