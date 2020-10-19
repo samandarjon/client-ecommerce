@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 const productItem = ({title, description, img, price, id, addBasket}) => {
     return (
         <div className="card">
-            <img alt={" "} className="card-img-top" src={"https://stormy-springs-39153.herokuapp.com/api/attach/preview/" + img}
+            <img alt={" "} className="card-img-top" src={"https://eccomarce.herokuapp.com/api/attach/preview/" + img}
                  />
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>

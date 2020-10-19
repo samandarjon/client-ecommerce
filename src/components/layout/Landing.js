@@ -24,12 +24,11 @@ class Landing extends Component {
         if (!loading) {
             productContent = (<h1>Loading</h1>)
         } else {
-            console.log(products.content)
             productContent = products.content.map(product =>
                 <ProductItem
                     title={product.title} description={product.description}
                     price={product.price} id={product.id}
-                    img={!isEmpty(product.attachments.length > 0) ? product.attachments[0].id : ""
+                    img={!isEmpty(product.attachments.length > 0 && !isEmpty(product.attachments[0].id)) ? product.attachments[0].id : ""
                     }
                     addBasket={this.onClick.bind(this, product.id)}
 
