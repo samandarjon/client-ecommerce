@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css'
 
-axios.defaults.baseURL = 'https://stormy-springs-39153.herokuapp.com';
+axios.defaults.baseURL = "https://stormy-springs-39153.herokuapp.com";
 ReactDOM.render(
     <React.StrictMode>
         <App/>

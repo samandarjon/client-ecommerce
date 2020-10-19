@@ -24,6 +24,7 @@ class Landing extends Component {
         if (!loading) {
             productContent = (<h1>Loading</h1>)
         } else {
+            console.log(products.content)
             productContent = products.content.map(product =>
                 <ProductItem
                     title={product.title} description={product.description}
