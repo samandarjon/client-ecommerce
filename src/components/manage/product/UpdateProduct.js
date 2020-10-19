@@ -12,7 +12,6 @@ import isEmpty from "../../../validation/is-empty";
 
 class UpdateProduct extends Component {
     onChangeHandler(e) {
-        const data = new FormData()
         this.setState({file: e.target.files[0]})
         console.log(e.target.files[0])
     }

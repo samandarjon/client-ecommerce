@@ -29,7 +29,7 @@ class OrderItem extends Component {
         if (!isEmpty(consumer)) {
             orderList = consumer.content.map((order, index) =>
                 <tr key={order.id}>
-                    <td scope="row">{"c " + order.id}</td>
+                    <td>{"c " + order.id}</td>
                     <td><Link to={"/product/" + order.product.id}>{order.product.title}</Link></td>
                     <td>{order.amount}</td>
                     <td>{order.address.city + " " + order.address.home}</td>
@@ -42,7 +42,7 @@ class OrderItem extends Component {
         if (!isEmpty(seller)) {
             orderList = seller.content.map((order, index) =>
                 <tr key={order.id}>
-                    <td scope="row">{"s " + order.id}</td>
+                    <td >{"s " + order.id}</td>
                     <td><Link to={"/product/" + order.product.id}>{order.product.title}</Link></td>
                     <td>{order.amount}</td>
                     <td>{order.address.city + " " + order.address.home}</td>

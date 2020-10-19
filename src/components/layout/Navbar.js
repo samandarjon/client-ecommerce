@@ -36,7 +36,7 @@ class Navbar extends Component {
     }
 
     render() {
-        const {isAuthenticated, user} = this.props.auth;
+        const {isAuthenticated} = this.props.auth;
         const {items} = this.props.baskets;
         let list;
         if (isEmpty(items)) {
@@ -47,10 +47,10 @@ class Navbar extends Component {
         const authLink = (
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <span className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i className="fas fa-shopping-basket"/> <span>{isEmpty(list) ? 0 : list.length}</span>
-                    </a>
+                    </span>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                         <div className="list-group w-10"> {list.map(item =>
                             (<div className="basket">
@@ -74,10 +74,10 @@ class Navbar extends Component {
 
                 </li>
                 <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <span className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Account
-                    </a>
+                    </span>
                     <div className="dropdown-menu mr-5" aria-labelledby="navbarDropdown">
                         <Link className="dropdown-item list" to="/addresses"><i className="fas fa-map-marker-alt"/>Address</Link>
                         <Link className="dropdown-item list" to={"/chat"}><i className="fas fa-comments"/> Chat</Link>
@@ -123,10 +123,10 @@ class Navbar extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            <span className="nav-link dropdown-toggle"  id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Category
-                            </a>
+                            </span>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {this.state.categories
                                     .map(category => <Link className="dropdown-item"
@@ -152,12 +152,12 @@ Navbar.propTypes = {
     baskets: PropTypes.object.isRequired
 };
 
-const mapStatetoProps = state => ({
+const mapStateToProps = state => ({
     auth: state.auth,
     baskets: state.baskets
 });
 export default connect(
-    mapStatetoProps,
+    mapStateToProps,
     {
         logoutUser,
         getBasketItem,

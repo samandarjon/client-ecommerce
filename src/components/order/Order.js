@@ -60,8 +60,8 @@ class Order extends Component {
         if (!isEmpty(product)) {
             content = (<div className="card">
                 <img className="card-img-top"
-                     src={"http://localhost:8080/api/attach/preview/" + product.attachments[0].id}
-                     alt="Card image cap"/>
+                     src={"/api/attach/preview/" + product.attachments[0].id}
+                     alt=" "/>
                 <div className="card-body">
                     <h5 className="card-title">{product.title}</h5>
                     <p className="card-text">{product.description}</p>

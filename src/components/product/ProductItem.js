@@ -5,8 +5,8 @@ import {Link} from "react-router-dom";
 const productItem = ({title, description, img, price, id, addBasket}) => {
     return (
         <div className="card">
-            <img className="card-img-top" src={"http://localhost:8080/api/attach/preview/" + img}
-                 alt="Card image cap"/>
+            <img alt={" "} className="card-img-top" src={"/api/attach/preview/" + img}
+                 />
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">{description}</p>

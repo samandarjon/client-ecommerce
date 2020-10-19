@@ -65,7 +65,7 @@ class Product extends Component {
                     feedback.map(item =>
                         <li className="list-group-item">
                             <div className="feedback-group">
-                                <img src={images} width="80px" className="img-fluid img"/>
+                                <img src={images} width="80px" alt={"img"} className="img-fluid img"/>
                                 <h6>{item.user}</h6>
                             </div>
                             <p>{item.message}</p>

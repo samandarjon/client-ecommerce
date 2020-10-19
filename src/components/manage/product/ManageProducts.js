@@ -7,11 +7,6 @@ import {deleteOwnProduct, getOwnProducts} from "../../../actions/productAction";
 import isEmpty from "../../../validation/is-empty";
 
 class ManageProducts extends Component {
-    constructor(props) {
-        super(props);
-
-    }
-
 
     componentDidMount() {
         const {user} = this.props.auth;
@@ -20,7 +15,7 @@ class ManageProducts extends Component {
 
     onDeleteProduct(id) {
         const {user} = this.props.auth;
-        this.props.deleteOwnProduct(id,user.sub );
+        this.props.deleteOwnProduct(id, user.sub);
     }
 
 
