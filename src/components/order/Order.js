@@ -6,6 +6,7 @@ import {addOrder} from "../../actions/orderAction";
 import {withRouter} from "react-router-dom";
 import PropTypes from "prop-types"
 import {getAddress} from "../../actions/addressAction";
+import {url} from "../../utils/env";
 
 class Order extends Component {
     constructor(props) {
@@ -60,7 +61,7 @@ class Order extends Component {
         if (!isEmpty(product)) {
             content = (<div className="card">
                 <img className="card-img-top"
-                     src={"/api/attach/preview/" + product.attachments[0].id}
+                     src={url + "/api/attach/preview/" + product.attachments[0].id}
                      alt=" "/>
                 <div className="card-body">
                     <h5 className="card-title">{product.title}</h5>
