@@ -5,8 +5,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css'
+import {url} from "./utils/env";
 
-axios.defaults.baseURL = "https://eccomarce.herokuapp.com";
+axios.defaults.baseURL = url;
 ReactDOM.render(
     <React.StrictMode>
         <App/>

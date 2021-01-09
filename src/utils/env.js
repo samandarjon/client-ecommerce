@@ -1,0 +1,1 @@
+export const url = "https://anor-ecommerce.herokuapp.com/"

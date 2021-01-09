@@ -6,6 +6,7 @@ import axios from "axios"
 import {deleteBasketItem, getBasketItem} from "../../actions/basketAction";
 import {connect} from "react-redux";
 import isEmpty from "../../validation/is-empty";
+import {getProductsByCategory} from "../../actions/productAction";
 
 class Navbar extends Component {
     onLogoutClick(e) {
@@ -35,6 +36,10 @@ class Navbar extends Component {
         console.log(id)
     }
 
+    getProduct(category) {
+        this.props.getProductsByCategory(null, category)
+    }
+
     render() {
         const {isAuthenticated} = this.props.auth;
         const {items} = this.props.baskets;
@@ -48,7 +53,7 @@ class Navbar extends Component {
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item dropdown">
                     <span className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i className="fas fa-shopping-basket"/> <span>{isEmpty(list) ? 0 : list.length}</span>
                     </span>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -75,7 +80,7 @@ class Navbar extends Component {
                 </li>
                 <li className="nav-item dropdown">
                     <span className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Account
                     </span>
                     <div className="dropdown-menu mr-5" aria-labelledby="navbarDropdown">
@@ -123,14 +128,16 @@ class Navbar extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item dropdown">
-                            <span className="nav-link dropdown-toggle"  id="navbarDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Category
                             </span>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {this.state.categories
-                                    .map(category => <Link className="dropdown-item"
-                                                           to={"/product/" + category.id}>{category.name}</Link>)
+                                    .map(category => <Link to={"/filter?category=" + category.name}>
+                                        <button className="dropdown-item"
+                                                onClick={event => this.getProduct(category.name)}>{category.name}</button>
+                                    </Link>)
                                 }
                             </div>
                         </li>
@@ -149,6 +156,7 @@ Navbar.propTypes = {
     auth: PropTypes.object.isRequired,
     logoutUser: PropTypes.func.isRequired,
     getBasketItem: PropTypes.func.isRequired,
+    getProductsByCategory: PropTypes.func.isRequired,
     baskets: PropTypes.object.isRequired
 };
 
@@ -161,6 +169,7 @@ export default connect(
     {
         logoutUser,
         getBasketItem,
+        getProductsByCategory,
         deleteBasketItem
     }
 )(Navbar);

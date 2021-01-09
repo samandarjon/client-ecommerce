@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import images from "./ssd.jpg"
 import TextAreaFieldGroup from "../comman/TextAreaInputGroup";
 import {Link} from "react-router-dom";
 import {getProduct} from "../../actions/productAction";
@@ -8,6 +7,7 @@ import PropTypes from "prop-types"
 import isEmpty from "../../validation/is-empty";
 import {addFeedback, getFeedback} from "../../actions/feedbackAction";
 import {addToBasket} from "../../actions/basketAction";
+import {url} from "../../utils/env";
 
 class Product extends Component {
     componentDidMount() {
@@ -18,7 +18,7 @@ class Product extends Component {
     }
 
     state = {
-        amount: 0,
+        amount: 1,
         message: "",
         error: ""
     }
@@ -63,11 +63,11 @@ class Product extends Component {
                 feedbackItem = (
                     feedback.map(item =>
                         <li className="list-group-item">
+
                             <div className="feedback-group">
-                                <img src={images} width="80px" alt={"img"} className="img-fluid img"/>
-                                <h6>{item.user}</h6>
+                                <h3 className={"text-info"}>{item.user}</h3>
                             </div>
-                            <p>{item.message}</p>
+                            <p className={"ml-3"}>{item.message}</p>
                         </li>)
 
                 )
@@ -76,7 +76,7 @@ class Product extends Component {
                 <div>
                     <div className="row my-4">
                         <div className="col-md col-sm-12">
-                            <img src={"https://eccomarce.herokuapp.com/api/attach/preview/" + product.attachments[0].id}
+                            <img src={url + "/api/attach/preview/" + product.attachments[0].id}
                                  alt="this is a product images" className="img-fluid"/>
                         </div>
                         <div className="col-md col-sm-12">
@@ -92,7 +92,7 @@ class Product extends Component {
                                 <div className="input-group-prepend">
                                     <span className="input-group-text" id="inputGroup-sizing-default">Amount</span>
                                 </div>
-                                <input type="number" name="amount" className="form-control" defaultValue={0}
+                                <input type="number" name="amount" className="form-control" defaultValue={1}
                                        onChange={event => this.onChange(event)}/>
                             </div>
                             <Link className="btn btn-info btn-block"

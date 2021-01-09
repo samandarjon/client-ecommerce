@@ -27,7 +27,7 @@ const SelectListGroup = ({name, value, error, info, onChange, options, disable})
             </select>
             {info && <small
                 className="form-text text-muted">{info} {info.toString().includes("Kerakli manzilni") ?
-                < Link to={"/address"}>Yaratish</Link> : ""}</small>}
+                < Link to={"/addresses"}>Yaratish</Link> : ""}</small>}
             {error && <div className="invalid-feedback">{error}</div>}
         </div>
     );

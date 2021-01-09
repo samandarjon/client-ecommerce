@@ -48,6 +48,7 @@ function App() {
                 <div className="App">
                     <Navbar/>
                     <Route exact path="/" component={Landing}/>
+                    <Route exact path="/filter" component={Landing}/>
                     <div className="container">
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/login" component={Login}/>

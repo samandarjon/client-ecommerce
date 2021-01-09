@@ -1,12 +1,13 @@
 import React from 'react';
 import "./product.css"
 import {Link} from "react-router-dom";
+import {url} from "../../utils/env";
 
 const productItem = ({title, description, img, price, id, addBasket}) => {
     return (
         <div className="card">
-            <img alt={" "} className="card-img-top" src={"https://eccomarce.herokuapp.com/api/attach/preview/" + img}
-                 />
+            <img alt={" "} className="card-img-top" src={url + "/api/attach/preview/" + img}
+            />
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">{description}</p>
