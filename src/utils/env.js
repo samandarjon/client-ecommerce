@@ -1,1 +1,1 @@
-export const url = "https://anor-ecommerce.herokuapp.com/"
+export const url = "https://anor-ecommerce.herokuapp.com"
